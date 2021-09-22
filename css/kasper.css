@@ -1,0 +1,44 @@
+/* Start Global */
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+ }
+
+ html {
+     scroll-behavior: smooth;
+ }
+
+ body {
+    font-family: 'Open Sans', sans-serif;
+ }
+
+ ul {
+     list-style: none;
+ }
+ .container {
+    padding: 0 15px;
+    margin: 0 auto;
+ }
+ 
+/*small screens*/
+@media (min-Width:768px) {
+    .container {
+        width: 750px;
+    }
+}
+/*meduium screens*/
+@media (min-Width:992px) {
+    .container {
+        width: 970px;
+    }
+}
+/*large screens*/
+@media (min-Width:1200px) {
+    .container {
+        width: 1170px;
+    }
+}
+/* End Global */
