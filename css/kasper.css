@@ -27,9 +27,7 @@ ul {
   padding: 0 15px;
   margin: 0 auto;
 }
-::placeholder {
-  color: white;
-}
+
 /*small screens*/
 @media (min-width: 768px) {
   .container {
@@ -570,19 +568,9 @@ header nav .form i {
 .status .container {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
+  grid-template-columns: 1fr;
 }
 
-.status .box {
-  color: white;
-  background-color: var(--secondary-color);
-  padding: 50px;
-}
-@media (max-width: 767px) {
-  .status .container {
-    grid-template-columns: repeat(1, 1fr);
-  }
-}
 @media (min-width: 768px) {
   .status .container {
     grid-template-columns: repeat(2, 1fr);
@@ -593,6 +581,13 @@ header nav .form i {
     grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
   }
 }
+
+.status .box {
+  color: white;
+  background-color: var(--secondary-color);
+  padding: 50px;
+}
+
 .status .box i {
   background-color: black;
   width: 40px;
@@ -770,6 +765,14 @@ header nav .form i {
   font-size: 24px;
   max-width: 100%;
 }
+.quotes .container q::before {
+  content: "«";
+  color: white;
+}
+.quotes .container q::after {
+  content: "»";
+  color: white;
+}
 .quotes .container p {
   position: relative;
   max-width: 100%;
@@ -782,42 +785,19 @@ header nav .form i {
 }
 .pricing .content {
   display: grid;
-  grid-template-columns: 1 1fr;
-  grid-template-rows: repeat(5, auto);
-  row-gap: 20px;
-  column-gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
 }
-@media (min-width: 768px) {
-  .pricing .content {
-    grid-template-columns: repeat(2, 2fr);
-    grid-template-rows: repeat(3, auto);
-  }
-  .pricing .content .main-footer {
-    grid-area: 3 / span 2;
-  }
-}
-@media (min-width: 992px) {
-  .pricing .content {
-    grid-template-columns: repeat(4, 4fr);
-    grid-template-rows: repeat(2, auto);
-  }
-  .pricing .content .main-footer {
-    grid-area: 2 / span 4;
-  }
-}
+
 .pricing .content .plan {
-  background-color: #fcfcfc;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  border-radius: 4px;
+  background-color: #f8f5f5;
+  text-align: center;
 }
 
 .pricing .content .plan .head {
-  width: 100%;
   text-align: center;
   border-bottom: solid 1px var(--main-color);
+  border-top: solid 1px var(--main-color);
   padding: 30px 0;
 }
 
@@ -829,26 +809,25 @@ header nav .form i {
 }
 
 .pricing .content .plan .head > span {
-  position: relative;
   font-weight: 900;
   font-size: 50px;
 }
 
 .pricing .content .plan .head > span::before {
   content: "$";
-  position: absolute;
-  left: -25px;
-  top: 0px;
+  position: relative;
+  left: -15px;
+  top: -30px;
   font-size: 25px;
   font-weight: normal;
 }
 
 .pricing .content .plan .head > span::after {
   content: "/Mo";
-  position: absolute;
+  position: relative;
   font-size: 20px;
-  top: 35px;
-  right: -54px;
+  top: 5px;
+  right: -15px;
 }
 
 .pricing .content .plan ul {
@@ -859,10 +838,18 @@ header nav .form i {
 
 .pricing .content .plan ul li {
   padding: 20px;
+  position: relative;
 }
 
-.pricing .content .plan ul li:not(:last-of-type) {
-  border-bottom: solid 1px var(--main-color);
+.pricing .content .plan ul li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  background-color: var(--main-color);
+  width: 120px;
+  height: 1px;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
 }
 
 .pricing .content .plan .foot {
@@ -874,30 +861,26 @@ header nav .form i {
 
 .pricing .content .plan .foot a {
   border: solid 1px var(--main-color);
-  width: 100px;
-  height: 45px;
+  width: fit-content;
   display: inline-block;
   text-decoration: none;
   padding: 10px;
 }
-.pricing .content .main-footer {
-  width: 100%;
-  text-align: center;
-}
 
-.pricing .content .main-footer > p {
-  margin: 30px 0;
+.pricing .contact-text {
+  text-align: center;
+  margin: 35px 0;
   font-size: 20px;
 }
 
-.pricing .content .main-footer > a {
-  width: 100px;
-  height: 45px;
+.pricing .contact-link {
+  width: fit-content;
   padding: 10px;
   color: white;
-  display: inline-block;
+  display: block;
   text-decoration: none;
   background-color: var(--main-color);
+  margin: 10px auto;
 }
 /* End pricing */
 /* Start Supscrip */
@@ -922,55 +905,180 @@ header nav .form i {
 
 .supscrip .container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  position: relative;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+  position: relative;
 }
 .supscrip .container form {
-  flex-basis: 100%;
+  width: 700px;
+  max-width: 100%;
   display: flex;
   position: relative;
-  margin-bottom:65px;
 }
 .supscrip .container p {
-  flex-basis: 100%;
   line-height: 2;
   color: white;
+  margin: 20px 0;
 }
 .supscrip .container form i {
   position: absolute;
-  top: 20px;
+  top: 50%;
+  transform: translateY(-50%);
   left: 20px;
   color: white;
 }
-.supscrip .container form input {
-  position: absolute;
-  height: 54px;
+.supscrip .container form input[type="text"] {
   background-color: transparent;
   border: solid 1px white;
-  width: 100%;
-  padding-left: 45px;
-  text-transform: white;
-}
-.supscrip .container form button {
-  position: absolute;
-  width: 125px;
-  padding: 17px;
+  width: calc(100% - 130px);
+  padding: 20px 20px 20px 60px;
+  caret-color: var(--main-color);
   color: white;
-  background-color: var(--main-color);
-  border: none;
-  right: 1px;
-  top: 1px;
+  border-right: none;
+}
+.supscrip .container form input[type="text"]::placeholder {
+  color: white;
+}
+.supscrip .container form input[type="submit"] {
+  width: 130px;
+  padding: 20px;
+  color: white;
+  border: 1px solid white;
   text-transform: uppercase;
+  background-color: var(--main-color);
+  border-left: none;
+}
+.supscrip .container form input[type="text"]:focus,
+.supscrip .container form input[type="submit"]:focus {
+  outline: none;
 }
 @media (min-width: 768px) {
-  .supscrip .container form,
-  .supscrip .container p {
-    flex-basis: 48%;
+  .supscrip .container {
+    flex-direction: row;
   }
-  .supscrip .container form {
-    margin-bottom: 0;
+  .supscrip .container p {
+    margin: 0 0 0 20px;
   }
 }
 /* End Supscrip */
+/* Start Contact */
+.contact-us {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+}
+.contact-us .content {
+  display: flex;
+  flex-direction: column;
+}
+.contact-us .content .info {
+  text-align: center;
+  order: -1;
+}
+
+@media (min-width: 768px) {
+  .contact-us .content {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .contact-us .content form {
+    flex-basis: 70%;
+  }
+  .contact-us .content .info {
+    flex-basis: 25%;
+    order: 2;
+  }
+}
+.contact-us .content form input[type="text"] {
+  display: block;
+  margin: 30px 0;
+  padding: 20px;
+  width: 100%;
+  border: 1px solid #ccc;
+}
+.contact-us .content form input[type="text-area"] {
+  height: 200px;
+  width: 100%;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+}
+.contact-us .content form input[type="text"]:focus,
+.contact-us .content form input[type="text-area"]:focus {
+  outline: none;
+}
+.contact-us .content form .submit {
+  text-align: right;
+}
+.contact-us .content form input[type="submit"] {
+  text-decoration: none;
+  padding: 20px;
+  width: fit-content;
+  color: white;
+  background-color: var(--main-color);
+  text-transform: uppercase;
+  border: none;
+}
+.contact-us .content .info h4 {
+  font-weight: normal;
+  font-size: 20px;
+  margin: 20px 0;
+}
+.contact-us .content .info > span {
+  display: block;
+  margin: 20px 0;
+  color: var(--text-color);
+}
+.contact-us .content .info h4:last-of-type {
+  margin-top: 70px;
+}
+.contact-us .content .info address {
+  color: var(--text-color);
+  line-height: 2;
+}
+/* End Contact */
+/* Start Footer  */
+.footer {
+  padding-top: calc(var(--section-padding) / 2);
+  padding-bottom: calc(var(--section-padding) / 2);
+  position: relative;
+  background-image: url("../images/subscribe.jpg");
+  background-size: cover;
+  position: relative;
+  text-align: center;
+  color: white;
+}
+.footer::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgb(0 0 0 / 70%);
+}
+.footer > img,
+.footer > h3 {
+  position: relative;
+  padding: 20px;
+}
+.footer > h3 {
+  width: fit-content;
+  font-size: 24px;
+  font-weight: normal;
+  text-transform: uppercase;
+  border-bottom: 1px solid white;
+  margin: 0 auto;
+}
+.footer .social {
+  position: relative;
+}
+.footer .social i {
+  padding: 0 20px;
+  margin: 20px 0;
+}
+.footer .copy-right > span {
+  color: var(--main-color);
+  font-weight: bold;
+}
+/* End Footer  */
